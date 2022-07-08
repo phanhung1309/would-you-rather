@@ -12,6 +12,6 @@ export const questionsSlice = createSlice({
   },
 });
 
-export const { authUser } = questionsSlice.actions;
+export const { receiveQuestions } = questionsSlice.actions;
 
 export default questionsSlice.reducer;
