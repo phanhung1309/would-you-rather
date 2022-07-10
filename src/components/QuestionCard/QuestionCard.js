@@ -8,13 +8,18 @@ import {
   Image,
   Button,
 } from "semantic-ui-react";
+import { useNavigate } from "react-router-dom";
 
 const QuestionCard = ({ questionData, author, isAnswered }) => {
+  const navigate = useNavigate();
+
   const buttonContent = isAnswered ? "View Result" : "View Poll";
 
   const buttonColor = isAnswered ? "blue" : "green";
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    navigate(`/question/${questionData.id}`);
+  };
 
   return (
     <SegmentGroup>

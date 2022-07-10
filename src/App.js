@@ -1,37 +1,39 @@
-import React, {useEffect} from "react";
-import {useDispatch} from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import PrivateRoutes from "./pages/PrivateRoutes";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import Question from "./pages/Question";
+import NewQuestion from "./pages/NewQuestion";
+import QuestionDetails from "./pages/QuestionDetails";
 import LeaderBoard from "./pages/LeaderBoard";
 import NotFound from "./pages/NotFound";
-import {_getQuestions, _getUsers} from "./service/data";
-import {receiveUsers} from "./store/usersSlice";
-import {receiveQuestions} from "./store/questionsSlice";
+import { _getQuestions, _getUsers } from "./service/data";
+import { receiveUsers } from "./store/usersSlice";
+import { receiveQuestions } from "./store/questionsSlice";
 import "./App.css";
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const initializeData = async () => {
-    const users = await _getUsers()
-    const question = await _getQuestions()
+    const users = await _getUsers();
+    const question = await _getQuestions();
 
-    dispatch(receiveUsers(users))
-    dispatch(receiveQuestions(question))
-  }
+    dispatch(receiveUsers(users));
+    dispatch(receiveQuestions(question));
+  };
 
   useEffect(() => {
-    initializeData()
-  }, [])
+    initializeData();
+  }, []);
 
   return (
     <Routes>
       <Route element={<PrivateRoutes />}>
         <Route path="/" element={<Home />} />
-        <Route path="/question" element={<Question />} />
+        <Route path="/new-question" element={<NewQuestion />} />
+        <Route path="/question/:questionId" element={<QuestionDetails />} />
         <Route path="/leaderboard" element={<LeaderBoard />} />
       </Route>
 

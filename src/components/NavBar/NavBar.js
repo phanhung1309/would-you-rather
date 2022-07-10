@@ -24,7 +24,7 @@ const NavBar = () => {
     <Container>
       <Menu>
         <MenuItem name="home" as={NavLink} to="/" />
-        <MenuItem name="questions" as={NavLink} to="/question" />
+        <MenuItem name="newQuestion" as={NavLink} to="/new-question" />
         <MenuItem name="leaderboard" as={NavLink} to="/leaderboard" />
         <MenuMenu position="right">
           <MenuItem>

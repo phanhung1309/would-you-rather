@@ -1,12 +1,12 @@
 import React from "react";
 import "./styles.css";
 
-const Question = () => {
+const NewQuestion = () => {
   return (
     <div className="container">
-      <h1>Question page</h1>
+      <h1>NewQuestion page</h1>
     </div>
   );
 };
 
-export default Question;
+export default NewQuestion;
