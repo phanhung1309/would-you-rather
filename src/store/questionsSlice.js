@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { formatQuestion } from "../service/data";
 
 const initialState = {};
 
@@ -14,9 +15,18 @@ export const questionsSlice = createSlice({
 
       state.questions[questionId][selection].votes.push(userId);
     },
+    addNewQuestion: (state, action) => {
+      const newQuestion = formatQuestion(action.payload);
+
+      state.questions = {
+        ...state.questions,
+        [newQuestion.id]: newQuestion,
+      };
+    },
   },
 });
 
-export const { receiveQuestions, addAnswerToQuestion } = questionsSlice.actions;
+export const { receiveQuestions, addAnswerToQuestion, addNewQuestion } =
+  questionsSlice.actions;
 
 export default questionsSlice.reducer;

@@ -2,3 +2,8 @@
     display: flex;
     justify-content: center;
 }
+
+.newQuestionContainer {
+    width: 500px;
+    margin-top: 32px;
+}

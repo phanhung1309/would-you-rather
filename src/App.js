@@ -18,15 +18,15 @@ const App = () => {
 
   const initializeData = async () => {
     const users = await _getUsers();
-    const question = await _getQuestions();
+    const questions = await _getQuestions();
 
     dispatch(receiveUsers(users));
-    dispatch(receiveQuestions(question));
+    dispatch(receiveQuestions(questions));
   };
 
   useEffect(() => {
     initializeData();
-  }, []);
+  }, [dispatch]);
 
   return (
     <Routes>
