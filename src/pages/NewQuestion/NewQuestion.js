@@ -11,6 +11,8 @@ import "./styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addNewQuestion } from "../../store/questionsSlice";
+import { formatQuestion } from "../../service/data";
+import { addQuestionToUser } from "../../store/usersSlice";
 
 const NewQuestion = () => {
   const [optionOneText, setOptionOneText] = useState("");
@@ -30,13 +32,15 @@ const NewQuestion = () => {
   };
 
   const handleSubmit = async () => {
-    dispatch(
-      addNewQuestion({
-        author: userId,
-        optionOneText,
-        optionTwoText,
-      })
-    );
+    const newQuestion = formatQuestion({
+      author: userId,
+      optionOneText,
+      optionTwoText,
+    });
+
+    dispatch(addNewQuestion(newQuestion));
+
+    dispatch(addQuestionToUser({ userId, questionId: newQuestion.id }));
 
     navigate("/");
   };

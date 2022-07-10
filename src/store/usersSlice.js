@@ -17,9 +17,15 @@ export const usersSlice = createSlice({
         [questionId]: selection,
       };
     },
+    addQuestionToUser: (state, action) => {
+      const { userId, questionId } = action.payload;
+
+      state.users[userId].questions.push(questionId);
+    },
   },
 });
 
-export const { receiveUsers, addAnswerToUser } = usersSlice.actions;
+export const { receiveUsers, addAnswerToUser, addQuestionToUser } =
+  usersSlice.actions;
 
 export default usersSlice.reducer;
