@@ -9,9 +9,14 @@ export const questionsSlice = createSlice({
     receiveQuestions: (state, action) => {
       state.questions = action.payload;
     },
+    addAnswerToQuestion: (state, action) => {
+      const { userId, questionId, selection } = action.payload;
+
+      state.questions[questionId][selection].votes.push(userId);
+    },
   },
 });
 
-export const { receiveQuestions } = questionsSlice.actions;
+export const { receiveQuestions, addAnswerToQuestion } = questionsSlice.actions;
 
 export default questionsSlice.reducer;
