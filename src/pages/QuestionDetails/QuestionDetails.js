@@ -16,26 +16,31 @@ const QuestionDetails = () => {
     return Object.keys(users[userId].answers).includes(questionId);
   }, [questionId, userId, users]);
 
+  const isValidQuestionId = useMemo(() => {
+    return Object.keys(questions).includes(questionId);
+  }, [questions, questionId]);
+
   useEffect(() => {
-    if (!Object.keys(questions).includes(questionId)) {
+    if (!isValidQuestionId) {
       navigate("/notfound");
     }
-  }, [navigate, questions, questionId]);
+  }, [navigate, isValidQuestionId]);
 
   return (
     <div className="container">
       <div className="questionContainer">
-        {!isAnswered ? (
-          <PollQuestion
-            questionData={questions[questionId]}
-            author={users[questions[questionId].author]}
-          />
-        ) : (
-          <PollResult
-            questionData={questions[questionId]}
-            author={users[questions[questionId].author]}
-          />
-        )}
+        {isValidQuestionId &&
+          (!isAnswered ? (
+            <PollQuestion
+              questionData={questions[questionId]}
+              author={users[questions[questionId].author]}
+            />
+          ) : (
+            <PollResult
+              questionData={questions[questionId]}
+              author={users[questions[questionId].author]}
+            />
+          ))}
       </div>
     </div>
   );
