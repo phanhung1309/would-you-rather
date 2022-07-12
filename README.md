@@ -25,7 +25,7 @@ The router structure includes:
 ```bash
 // Private routes (need authentication to reach)
     ├── '/' - Home screen 
-    ├── '/new-question' - New question screen 
+    ├── '/add' - Add new question screen 
     ├── '/question/:questionId' - Question details screen 
     ├── '/leaderboard' - LeaderBoard screen 
 
